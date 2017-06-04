@@ -39,6 +39,7 @@ class CoreDataModel {
             debugPrint("Fetching Failed")
         }
     }
+    
     //Sets Task in CoreData
     func setTaskToCD(taskName:String){
         let task = Task(context: context)
@@ -55,12 +56,10 @@ class CoreDataModel {
         }
         self.tasks.append(task)
         self.saveContext()
-        print(#function)
-        print(self.tasks.count)
-        
         
         
     }
+    
     //Remove Task from CoreData
     func removeTaskFromCD(row: Int){
         let task = self.tasks[row]
@@ -70,6 +69,7 @@ class CoreDataModel {
         
         
     }
+    
     //Updates Task in CoreData
     func updateTaskInCD(task: Task){
         let updatedTask = self.tasks.filter({$0.taskId == task.taskId})
