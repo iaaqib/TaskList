@@ -37,18 +37,18 @@ extension UIViewController{
     }
     
     func showAlert(title: String, message: String){
-    
+        
         let alert = UIAlertController(title: title, message: message,
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK",
-                                      style: .default) { (action: UIAlertAction!) -> Void in
+                                     style: .default) { (action: UIAlertAction!) -> Void in
                                         
         }
         alert.addAction(okAction)
         present(alert, animated: true,
                 completion: nil)
-    
-    
+        
+        
     }
     
     

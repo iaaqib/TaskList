@@ -7,41 +7,40 @@
 //
 
 import Foundation
-import CoreData
+
 
 
 class TaskViewModel {
-
+    
     
     private var coreDataModel = CoreDataModel()
     
-     var tasks : [Task] {
+    //Holds the Task Objects from CoreData
+    var tasks : [Task] {
         get {
-        return self.coreDataModel.tasks
+            return self.coreDataModel.tasks
         }
         set(newTasks){
-        self.tasks = newTasks
+            self.tasks = newTasks
         }
     }
     
-    /**Further Data Passing to CoreData
-    **/
+    // Further Data Passing to CoreData class
+    
     func setTask(task : String?){
         guard let task = task else {return}
         self.coreDataModel.setTaskToCD(taskName: task)
-        print(#function)
-        print(self.tasks.count)
+        
         
     }
     func removeTask(row: Int){
-    self.coreDataModel.removeTaskFromCD(row: row)
-        print(#function)
-        print(self.tasks.count)
+        self.coreDataModel.removeTaskFromCD(row: row)
+        
     }
     func updateTask(task: Task){
-    self.coreDataModel.updateTaskInCD(task: task)
-    
+        self.coreDataModel.updateTaskInCD(task: task)
+        
     }
-
-
+    
+    
 }

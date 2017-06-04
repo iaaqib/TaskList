@@ -15,7 +15,7 @@ class CoreDataModel {
     
     //Container Context
     fileprivate lazy var context : NSManagedObjectContext = {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return context
     }()
     
@@ -24,7 +24,7 @@ class CoreDataModel {
     //MARK: Init
     init() {
         getTask()
-
+        
     }
     
     //MARK: CoreData Operations
@@ -33,35 +33,33 @@ class CoreDataModel {
     private func getTask(){
         do {
             tasks = try context.fetch(Task.fetchRequest())
-           // debugPrint("TaskName:\(tasks.taskId)")
-           // debugPrint("TaskID:\(tasks.taskId)")
+            
         }
         catch {
-            print("Fetching Failed")
+            debugPrint("Fetching Failed")
         }
     }
     //Sets Task in CoreData
     func setTaskToCD(taskName:String){
         let task = Task(context: context)
         task.task = taskName
-        debugPrint("TaskName:\(task.task)")
-
+        
         //If has a last task add 1 to the id and save else set id to 0
         if let lastTaskId = self.tasks.last?.taskId{
-        let id = lastTaskId + 1
-        task.taskId = id
-
+            let id = lastTaskId + 1
+            task.taskId = id
+            
         }
         else{
-        task.taskId = 0
+            task.taskId = 0
         }
         self.tasks.append(task)
         self.saveContext()
         print(#function)
         print(self.tasks.count)
         
-        debugPrint("TaskID:\(task.taskId)")
-    
+        
+        
     }
     //Remove Task from CoreData
     func removeTaskFromCD(row: Int){
@@ -69,8 +67,8 @@ class CoreDataModel {
         self.context.delete(task)
         self.tasks.remove(at: row)
         self.saveContext()
-    
-    
+        
+        
     }
     //Updates Task in CoreData
     func updateTaskInCD(task: Task){
@@ -86,5 +84,5 @@ class CoreDataModel {
         
     }
     
-  
+    
 }
